@@ -200,6 +200,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808161559060_Initial_Model.cs" />
+    <Compile Include="Migrations\201808161559060_Initial_Model.Designer.cs">
+      <DependentUpon>201808161559060_Initial_Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808161617325_Add_SteelProfiles.cs" />
+    <Compile Include="Migrations\201808161617325_Add_SteelProfiles.Designer.cs">
+      <DependentUpon>201808161617325_Add_SteelProfiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808161621009_Populate_Status.cs" />
+    <Compile Include="Migrations\201808161621009_Populate_Status.Designer.cs">
+      <DependentUpon>201808161621009_Populate_Status.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808161623081_Populate_ProfileDetails.cs" />
+    <Compile Include="Migrations\201808161623081_Populate_ProfileDetails.Designer.cs">
+      <DependentUpon>201808161623081_Populate_ProfileDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -288,6 +304,20 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808161559060_Initial_Model.resx">
+      <DependentUpon>201808161559060_Initial_Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808161617325_Add_SteelProfiles.resx">
+      <DependentUpon>201808161617325_Add_SteelProfiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808161621009_Populate_Status.resx">
+      <DependentUpon>201808161621009_Populate_Status.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808161623081_Populate_ProfileDetails.resx">
+      <DependentUpon>201808161623081_Populate_ProfileDetails.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
