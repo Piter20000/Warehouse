@@ -26,7 +26,5 @@ namespace Warehouse.Models
         public DbSet<ProjectInformations> ProjectInformations { get; set; }
 
         public DbSet<Status> Status { get; set; }
-
-        public DbSet<ProfileHistory> ProfileHistories { get; set; }
     }
 }

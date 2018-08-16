@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Warehouse.Models;
 
-namespace Warehouse.Models
+namespace Warehouse.Dtos
 {
-    public class SteelProfile
+    public class SteelProfileDto
     {
-        [Key]
         public int Id { get; set; }
 
         [Required]
-        [Range(1,1000)]
-        [Display(Name = "Profile's Quantity")]
+        [Range(1, 1000)]
         public int Quantity { get; set; }
 
-        [Required(ErrorMessage = "Length field is required - value in [mm].")]
-        [Range(1,30000, ErrorMessage = "Scope 1 - 30000 [mm].")]
-        [Display(Name = "Profile's Length")]
+        [Required]
+        [Range(1, 30000)]
         public float Length { get; set; }
 
         [StringLength(100)]
@@ -36,17 +34,17 @@ namespace Warehouse.Models
 
         public DateTime? ModifiedDate { get; set; }
 
-        public ProfileDetails ProfileDetails { get; set; }
+        public ProfileDetailsDto ProfileDetails { get; set; }
 
         [Required]
         public int ProfileDetailsId { get; set; }
 
-        public ProjectInformations ProjectInformations { get; set; }
+        public ProjectInformationsDto ProjectInformations { get; set; }
 
         [Required]
         public int ProjectInformationsId { get; set; }
 
-        public Status Status { get; set; }
+        public StatusDto Status { get; set; }
 
         [Required]
         public int StatusId { get; set; }
