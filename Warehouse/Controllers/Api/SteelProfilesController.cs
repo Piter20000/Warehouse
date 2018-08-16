@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Http;
 using AutoMapper;
 using Warehouse.Dtos;
@@ -27,7 +29,11 @@ namespace Warehouse.Controllers.Api
             
             if (!String.IsNullOrWhiteSpace(query))
             {
-                var steelProfilesQuery = _context.SteelProfiles.Where(x => x.ProfileDetails.Name.Contains(query));
+                var steelProfilesQuery = _context.SteelProfiles
+                    .Include(x=>x.ProfileDetails)
+                    .Include(x=>x.ProjectInformations)
+                    .Include(x=>x.Status)
+                    .Where(x => x.ProfileDetails.Name.Contains(query));
 
                 var steelProfilestDto = steelProfilesQuery.ToList().Select(Mapper.Map<SteelProfile, SteelProfileDto>);
 
@@ -35,7 +41,10 @@ namespace Warehouse.Controllers.Api
             }
             else
             {
-                var steelProfilesQuery = _context.SteelProfiles.Where(x => x.ProfileDetails.Name.Contains(query));
+                var steelProfilesQuery = _context.SteelProfiles
+                    .Include(x => x.ProfileDetails)
+                    .Include(x => x.ProjectInformations)
+                    .Include(x => x.Status);
 
                 var steelProfilestDto = steelProfilesQuery.ToList().Select(Mapper.Map<SteelProfile, SteelProfileDto>);
 

@@ -29,12 +29,24 @@ namespace Warehouse.Controllers
             return View();
         }
 
+        // GET: Profiles/Create
+        public ActionResult New()
+        {
+            ViewBag.ProfileDetailsId = new SelectList(_context.ProfileDetails, "Id", "Name");
+            ViewBag.ProjectInformationsId = new SelectList(_context.ProjectInformations, "Id", "Name");
+            ViewBag.StatusId = new SelectList(_context.Status, "Id", "Name");
+
+            return View();
+        }
+
         // PUT: SteelProfiles
         public ActionResult SaveNew(SteelProfile steelProfile)
         {
             if (!ModelState.IsValid)
                 return View("New");
 
+            steelProfile.CreatedByUser = User.Identity.Name;
+            steelProfile.CreatedDate = DateTime.Now;
             _context.SteelProfiles.Add(steelProfile);
 
             _context.SaveChanges();
@@ -52,19 +64,12 @@ namespace Warehouse.Controllers
             steelProfileInDb.ProjectInformations = steelProfile.ProjectInformations;
             steelProfileInDb.StatusId = steelProfile.StatusId;
             steelProfileInDb.Quantity = steelProfile.Quantity;
-            steelProfileInDb.ModifiedByUser = steelProfile.ModifiedByUser;
-            steelProfileInDb.ModifiedDate = steelProfile.ModifiedDate;
-            steelProfileInDb.OccupiedByUser = steelProfile.OccupiedByUser;
-            steelProfileInDb.OccupiedDate = steelProfile.OccupiedDate;
+            steelProfileInDb.ModifiedByUser = User.Identity.Name;
+            steelProfileInDb.ModifiedDate = DateTime.Now;
             
             _context.SaveChanges();
 
             return RedirectToAction("Index", "SteelProfiles");
-        }
-
-        public ActionResult New()
-        {
-            return View();
         }
 
         public ActionResult Edit(int id)
@@ -73,6 +78,10 @@ namespace Warehouse.Controllers
 
             if (projectInDb == null)
                 return HttpNotFound();
+
+            ViewBag.ProfileDetailsId = new SelectList(_context.ProfileDetails, "Id", "Name");
+            ViewBag.ProjectInformationsId = new SelectList(_context.ProjectInformations, "Id", "Name");
+            ViewBag.StatusId = new SelectList(_context.Status, "Id", "Name");
 
             return View(projectInDb);
         }
