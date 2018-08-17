@@ -1,58 +1,61 @@
-﻿
+﻿@model string
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "ProjectElements";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Steel Profiles</h2>
+<h2>Projects Elements</h2>
 
 <p>
-    @Html.ActionLink("Create New Profile", "New", "SteelProfiles", new { @class = "btn btn-primary" })
+    @Html.ActionLink("New Project", "New", "Projects", null, new { @class = "btn btn-primary" })
 </p>
 
-<table id="profile_table" class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>
-                Profile Type
-            </th>
-            <th>
-                Project Name
-            </th>
-            <th>
-                Status
-            </th>
-            <th>
-                Created By
-            </th>
-            <th>
-                Created Date
-            </th>
-            <th>
-                Quantity
-            </th>
-            <th>
-                Element Length [mm]
-            </th>
-            <th>
-                Occupied By
-            </th>
-            <th>
-                Options
-            </th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
+    <table id="profile_table" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Profile Type
+                </th>
+                <th>
+                    Project Name
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Created By
+                </th>
+                <th>
+                    Created Date
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Element Length [mm]
+                </th>
+                <th>
+                    Occupied By
+                </th>
+                <th>
+                    Options
+                </th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
 @section scripts
 {
     <script>
+        
+        var project = @Html.Raw(Json.Encode(ViewBag.Name));
+
         $(document).ready(function () {
 
             var table = $("#profile_table").DataTable({
 
                 ajax: {
-                    url: "/api/SteelProfiles",
+                    url: "/api/ProjectElements?query=" + project,
                     dataSrc: ""
                 },
                 columns: [
@@ -60,10 +63,7 @@
                         data: "profileDetails.name"
                     },
                     {
-                        data: "projectInformations.name",
-                        render: function (data, type, profile) {
-                            return "<a class='btn-link' href='/Projects/ProjectElements?project=" + profile.projectInformations.name + "'>" + data + "</a>";
-                        }
+                        data: "projectInformations.name"
                     },
                     {
                         data: "status.name"
@@ -110,4 +110,4 @@
 
         });
     </script>
-}
+    }

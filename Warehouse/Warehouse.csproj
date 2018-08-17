@@ -209,9 +209,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\ProjectElementsController.cs" />
+    <Compile Include="Controllers\Api\ProjectsController.cs" />
     <Compile Include="Controllers\Api\SteelProfilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\SteelProfilesController.cs" />
     <Compile Include="Dtos\ProfileDetailsDto.cs" />
     <Compile Include="Dtos\ProjectInformationsDto.cs" />
@@ -490,6 +493,10 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\SteelProfiles\New.cshtml" />
     <Content Include="Views\SteelProfiles\Edit.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\Projects\New.cshtml" />
+    <Content Include="Views\Projects\Edit.cshtml" />
+    <Content Include="Views\Projects\ProjectElements.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

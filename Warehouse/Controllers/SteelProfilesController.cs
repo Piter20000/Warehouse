@@ -40,6 +40,8 @@ namespace Warehouse.Controllers
         }
 
         // PUT: SteelProfiles
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SaveNew(SteelProfile steelProfile)
         {
             if (!ModelState.IsValid)
@@ -55,6 +57,8 @@ namespace Warehouse.Controllers
         }
 
         // PUT: SteelProfiles
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SaveEdited(SteelProfile steelProfile)
         {
             var steelProfileInDb = _context.SteelProfiles.Single(x => x.Id == steelProfile.Id);

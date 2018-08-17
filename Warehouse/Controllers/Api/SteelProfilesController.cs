@@ -23,7 +23,7 @@ namespace Warehouse.Controllers.Api
 
         #region Api Controllers
 
-        // GET: api/SteelProfiles
+        // GET: /Api/SteelProfiles
         public IHttpActionResult GetSteelProfiles(string query = null)
         {
             
@@ -52,9 +52,9 @@ namespace Warehouse.Controllers.Api
             }
         }
 
-        // DELETE /api/project/1
+        // DELETE /Api/SteelProfiles/1
         [HttpDelete]
-        public IHttpActionResult DeleteProject(int id)
+        public IHttpActionResult DeleteSteelProfiles(int id)
         {
             var steelProfileInDb = _context.SteelProfiles.SingleOrDefault(c => c.Id == id);
 
