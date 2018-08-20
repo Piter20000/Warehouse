@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Warehouse.Models;
+using Warehouse.ViewModels;
 
 namespace Warehouse.Controllers
 {
@@ -29,7 +30,7 @@ namespace Warehouse.Controllers
             return View();
         }
 
-        // GET: Profiles/Create
+        // GET: Profiles/New
         public ActionResult New()
         {
             ViewBag.ProfileDetailsId = new SelectList(_context.ProfileDetails, "Id", "Name");
@@ -64,12 +65,12 @@ namespace Warehouse.Controllers
             var steelProfileInDb = _context.SteelProfiles.Single(x => x.Id == steelProfile.Id);
 
             steelProfileInDb.Length = steelProfile.Length;
-            steelProfileInDb.ProfileDetailsId = steelProfile.ProfileDetailsId;
-            steelProfileInDb.ProjectInformations = steelProfile.ProjectInformations;
-            steelProfileInDb.StatusId = steelProfile.StatusId;
             steelProfileInDb.Quantity = steelProfile.Quantity;
             steelProfileInDb.ModifiedByUser = User.Identity.Name;
             steelProfileInDb.ModifiedDate = DateTime.Now;
+            steelProfileInDb.ProfileDetailsId = steelProfile.ProfileDetailsId;
+            steelProfileInDb.ProjectInformationsId = steelProfile.ProjectInformationsId;
+            steelProfileInDb.StatusId = steelProfile.StatusId;
             
             _context.SaveChanges();
 
@@ -78,16 +79,37 @@ namespace Warehouse.Controllers
 
         public ActionResult Edit(int id)
         {
-            var projectInDb = _context.SteelProfiles.SingleOrDefault(x => x.Id == id);
+            // Copy from DB
+            var steelProfileInDb = _context.SteelProfiles.SingleOrDefault(x => x.Id == id);
 
-            if (projectInDb == null)
+            if (steelProfileInDb == null)
                 return HttpNotFound();
 
-            ViewBag.ProfileDetailsId = new SelectList(_context.ProfileDetails, "Id", "Name");
-            ViewBag.ProjectInformationsId = new SelectList(_context.ProjectInformations, "Id", "Name");
-            ViewBag.StatusId = new SelectList(_context.Status, "Id", "Name");
+            // Create ProfileDetails list
+            var profileDetailsesList = _context.ProfileDetails.ToList();
 
-            return View(projectInDb);
+            profileDetailsesList.Insert(0,steelProfileInDb.ProfileDetails);
+
+            // Create ProjectsInformations list
+            var projectInformationsList = _context.ProjectInformations.ToList();
+
+            projectInformationsList.Insert(0,steelProfileInDb.ProjectInformations);
+
+            // Create Status list
+            var statusList = _context.Status.ToList();
+
+            statusList.Insert(0,steelProfileInDb.Status);
+
+            // Initial View Model
+            var steelProfileEditViewModel = new SteelProfileEditViewModel()
+            {
+                SteelProfile = steelProfileInDb,
+                ProfileDetailses = profileDetailsesList,
+                ProjectInformationses = projectInformationsList,
+                Statuses = statusList
+            };
+
+            return View(steelProfileEditViewModel);
         }
 
         #endregion

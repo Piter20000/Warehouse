@@ -42,11 +42,20 @@ namespace Warehouse.Controllers.Api
         public IHttpActionResult DeleteProjects(int id)
         {
             var projectInDb = _context.ProjectInformations.SingleOrDefault(c => c.Id == id);
+            var steelProfilesInDb = _context.SteelProfiles.Where(x => x.ProjectInformationsId == id).ToList();
 
             if (projectInDb == null)
                 return NotFound();
 
+            // Remove Project
             _context.ProjectInformations.Remove(projectInDb);
+
+            // Remove all Steel Profiles of the Project
+            foreach (var steelProfile in steelProfilesInDb)
+            {
+                _context.SteelProfiles.Remove(steelProfile);
+            }
+
             _context.SaveChanges();
 
             return Ok();

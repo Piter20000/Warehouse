@@ -4,19 +4,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Projects</h2>
+<h2>Profiles Details</h2>
 
 <p>
-    @Html.ActionLink("New Project", "New", "Projects", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("New Profile Details", "New", "ProfileDetails", null, new { @class = "btn btn-primary" })
 </p>
 
-<table id="projects_table" class="table table-bordered table-hover">
+<table id="profiles_table" class="table table-bordered table-hover">
     <thead>
-    <tr>
-        <th>ID</th>
-        <th>Project Name</th>
-        <th>Options</th>
-    </tr>
+        <tr>
+            <th>ID</th>
+            <th>Profile Name</th>
+            <th>Weigth [kg/1m]</th>
+            <th>Options</th>
+        </tr>
     </thead>
     <tbody></tbody>
 </table>
@@ -26,10 +27,10 @@
     <script>
         $(document).ready(function () {
 
-            var table = $("#projects_table").DataTable({
+            var table = $("#profiles_table").DataTable({
 
                 ajax: {
-                    url: "/api/Projects",
+                    url: "/Api/ProfileDetails",
                     dataSrc: ""
                 },
                 columns: [
@@ -40,21 +41,24 @@
                         data: "name"
                     },
                     {
+                        data: "weigth"
+                    },
+                    {
                         data: "id",
                         render: function (data, type, project) {
-                            return "<button class='btn-link js-delete' data-project-id=" + data + ">Delete</button>" + "| " + "<a class='btn-link' href='/projects/edit/" + project.id + "'> Edit </a>";
+                            return "<button class='btn-link js-delete' data-profile-id=" + data + ">Delete</button>" + "| " + "<a class='btn-link' href='/ProfileDetails/edit/" + project.id + "'> Edit </a>";
                         }
                     }
                 ]
             });
 
-            $("#projects_table").on("click", ".js-delete", function () {
+            $("#profiles_table").on("click", ".js-delete", function () {
                 var button = $(this);
 
-                bootbox.confirm("Are you sure you want to delete this Project and all his Steel Profiles?", function (result) {
+                bootbox.confirm("Are you sure you want to delete this Profile Detail and his Steel Profiles?", function (result) {
                     if (result) {
                         $.ajax({
-                            url: "/api/projects/" + button.attr("data-project-id"),
+                            url: "/Api/ProfileDetails/" + button.attr("data-profile-id"),
                             method: "DELETE",
                             success: function () {
                                 table.row(button.parents("tr")).remove().draw();

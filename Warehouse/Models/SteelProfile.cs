@@ -39,16 +39,19 @@ namespace Warehouse.Models
         public ProfileDetails ProfileDetails { get; set; }
 
         [Required]
+        [Display(Name = "Profile Details")]
         public int ProfileDetailsId { get; set; }
 
         public ProjectInformations ProjectInformations { get; set; }
 
         [Required]
+        [Display(Name = "Project Informations")]
         public int ProjectInformationsId { get; set; }
 
         public Status Status { get; set; }
 
         [Required]
+        [Display(Name = "Status")]
         public int StatusId { get; set; }
     }
 }
