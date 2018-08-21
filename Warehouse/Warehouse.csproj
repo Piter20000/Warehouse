@@ -18,7 +18,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44324</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -245,13 +245,23 @@
     <Compile Include="Migrations\201808161710353_Update_SteelProfiles.Designer.cs">
       <DependentUpon>201808161710353_Update_SteelProfiles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808211328480_Updare_User_Data.cs" />
+    <Compile Include="Migrations\201808211328480_Updare_User_Data.Designer.cs">
+      <DependentUpon>201808211328480_Updare_User_Data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808211452379_Seed_Admin.cs" />
+    <Compile Include="Migrations\201808211452379_Seed_Admin.Designer.cs">
+      <DependentUpon>201808211452379_Seed_Admin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\CustomerValidation\UniqueNick.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProfileDetails.cs" />
     <Compile Include="Models\ProjectInformations.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\SteelProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -535,6 +545,12 @@
     <EmbeddedResource Include="Migrations\201808161710353_Update_SteelProfiles.resx">
       <DependentUpon>201808161710353_Update_SteelProfiles.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808211328480_Updare_User_Data.resx">
+      <DependentUpon>201808211328480_Updare_User_Data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808211452379_Seed_Admin.resx">
+      <DependentUpon>201808211452379_Seed_Admin.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -554,7 +570,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50922</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50922/</IISUrl>
+          <IISUrl>https://localhost:44324/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

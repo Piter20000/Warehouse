@@ -151,7 +151,13 @@ namespace Warehouse.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    Nick = model.Nick,
+                    Phone = model.Phone
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -367,7 +373,13 @@ namespace Warehouse.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    Nick = model.Nick,
+                    Phone = model.Phone
+                };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

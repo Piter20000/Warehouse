@@ -1,13 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Warehouse.Models.CustomerValidation;
 
 namespace Warehouse.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
+        [UniqueNick]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "Nick field is required")]
+        [StringLength(50, ErrorMessage = "Maximum 50 chars")]
+        public string Nick { get; set; }
+
+        [Display(Name = "Your contact number :")]
+        [Required(ErrorMessage = "A phone number is required.")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "Invalid Phone Number")]
+        [RegularExpression(@"^([0-9]{9})$", ErrorMessage = "Invalid Phone Number. Like: 838223223")]
+        public string Phone { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -79,6 +91,17 @@ namespace Warehouse.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Nick field is required")]
+        [StringLength(50, ErrorMessage = "Maximum 50 chars")]
+        [UniqueNick]
+        public string Nick { get; set; }
+
+        [Display(Name = "Your contact number :")]
+        [Required(ErrorMessage = "A phone number is required.")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "Invalid Phone Number")]
+        [RegularExpression(@"^([0-9]{9})$", ErrorMessage = "Invalid Phone Number. Like: 838223223")]
+        public string Phone { get; set; }
     }
 
     public class ResetPasswordViewModel

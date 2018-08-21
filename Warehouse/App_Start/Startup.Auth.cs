@@ -54,15 +54,15 @@ namespace Warehouse
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "272179960175187",
+               appSecret: "9f86f03c443fd03dbf061973aa6e70b1");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "665007488999-ukgpr477d897o20s0sr8609qkktnvtgl.apps.googleusercontent.com",
+                ClientSecret = "rdI8oEfWmoa2sGTJKUGEVy1v"
+            });
         }
     }
 }
